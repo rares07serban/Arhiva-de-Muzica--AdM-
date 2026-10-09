@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #050505;
+  --card: #111111;
+  --card-hover: #181818;
+  --text: #f5e6a8;
+  --text-strong: #fff4bd;
+  --muted: #9a9583;
+  --accent: #f3d35b;
+  --accent-hover: #ffe477;
+  --accent-soft: #292510;
+  --border: #292929;
+  --border-strong: #444444;
+  --white: #ffffff;
+
+  /* Culori badge-uri pentru genuri */
+  --badge-electronic: #287ea3;
+  --badge-ambient: #277f75;
+  --badge-rock: #a52d48;
+  --badge-hiphop: #a66d20;
+  --badge-jazz: #7453a8;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Antet */
+.app-header {
+  background: #000000;
+  color: var(--text-strong);
+  text-align: center;
+  padding: 32px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  margin: 0 0 8px 0;
+}
+
+.app-header p {
+  margin: 0;
+}
+
+.app-header .app-description {
+  color: var(--muted);
+}
+
+.app-header .app-count {
+  margin-top: 10px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Elemente mici de orientare */
+.eyebrow {
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Container cu Grid */
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Panouri */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-strong);
+  font-size: 1.25rem;
+}
+
+/* Formular */
+.item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.item-form input,
+.item-form select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: #090909;
+  color: var(--text-strong);
+  font-size: 1rem;
+}
+
+.item-form input::placeholder {
+  color: var(--muted);
+}
+
+.item-form input:hover,
+.item-form select:hover {
+  border-color: var(--accent);
+}
+
+.item-form button {
+  background: var(--accent);
+  color: #080808;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.item-form button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Header lista */
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.list-count {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Lista si Carduri */
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: #0b0b0b;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.item-card:hover {
+  border-color: var(--accent);
+  background-color: var(--card-hover);
+}
+
+.item-main {
+  min-width: 0;
+}
+
+.item-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-title-row h3 {
+  margin: 0 0 6px 0;
+  color: var(--text-strong);
+  font-size: 1.05rem;
+}
+
+.item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Favorite */
+.favorite {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.not-favorite {
+  color: var(--muted);
+}
+
+/* Etichete (Badges) */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  color: var(--white);
+}
+
+.badge-electronic {
+  background: var(--badge-electronic);
+}
+
+.badge-ambient {
+  background: var(--badge-ambient);
+}
+
+.badge-rock {
+  background: var(--badge-rock);
+}
+
+.badge-hiphop {
+  background: var(--badge-hiphop);
+}
+
+.badge-jazz {
+  background: var(--badge-jazz);
+}
+
+.format {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.status {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Element finalizat (done) - S1-R5 */
+.item-card.done {
+  background: #080808;
+  border-color: #242424;
+}
+
+.item-card.done h3 {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.item-card.done .status {
+  color: var(--accent);
+}
+
+/* Focus vizibil tastatura - S1-R7 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Subsol */
+.app-footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Responsive sub 700px - S1-R6 */
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+}
+
+/* Tema intunecata - S1-R7 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #050505;
+    --card: #111111;
+    --card-hover: #181818;
+    --text: #f5e6a8;
+    --text-strong: #fff4bd;
+    --muted: #9a9583;
+    --accent: #f3d35b;
+    --accent-hover: #ffe477;
+    --accent-soft: #292510;
+    --border: #292929;
+    --border-strong: #444444;
+  }
+}

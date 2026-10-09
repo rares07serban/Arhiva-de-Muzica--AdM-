@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arhiva de Muzică - mockup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-content">
+      <p class="eyebrow">Proiect Tehnologii Web</p>
+      <h1>Arhiva de Muzică</h1>
+      <p class="app-description">
+        O platformă audio pentru creatori și ascultători, unde piesele pot fi
+        organizate și descoperite după gen.
+      </p>
+      <p class="app-count">3 piese, dintre care 2 active</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-labelledby="add-title">
+      <h2 id="add-title">Adaugă o piesă</h2>
+
+      <form class="item-form">
+        <label for="title">
+          Titlu
+          <input
+            id="title"
+            type="text"
+            name="title"
+            maxlength="100"
+            placeholder="Ex: Back From Eternity"
+            required
+          />
+        </label>
+
+        <label for="genre">
+          Gen
+          <select id="genre" name="genre" required>
+            <option value="">Alege un gen</option>
+            <option value="electronic">Electronic</option>
+            <option value="hip-hop">Hip-Hop</option>
+            <option value="rock">Rock</option>
+            <option value="jazz">Jazz</option>
+            <option value="ambient">Ambient</option>
+          </select>
+        </label>
+
+        <label for="audio-format">
+          Format audio
+          <select id="audio-format" name="audio-format">
+            <option value="">Opțional</option>
+            <option value="mp3">MP3</option>
+            <option value="wav">WAV</option>
+            <option value="flac">FLAC</option>
+          </select>
+        </label>
+
+        <button type="submit">Adaugă piesa</button>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="list-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Colecția mea</p>
+          <h2 id="list-title">Piese audio</h2>
+        </div>
+        <span class="list-count">3 piese</span>
+      </div>
+
+      <!-- În Etapa 2, lista va fi generată din JavaScript. -->
+      <ul class="item-list">
+        <li class="item-card">
+          <div class="item-main">
+            <div class="item-title-row">
+              <h3>Back From Eternity</h3>
+              <span class="favorite" aria-label="Piesă favorită">★</span>
+            </div>
+            <div class="item-meta">
+              <span class="badge badge-electronic">Electronic</span>
+              <span class="format">MP3</span>
+            </div>
+          </div>
+          <span class="status">Activ</span>
+        </li>
+
+        <li class="item-card done">
+          <div class="item-main">
+            <div class="item-title-row">
+              <h3>Eleven</h3>
+              <span class="favorite not-favorite" aria-label="Piesă nefavorită">☆</span>
+            </div>
+            <div class="item-meta">
+              <span class="badge badge-ambient">Ambient</span>
+              <span class="format">WAV</span>
+            </div>
+          </div>
+          <span class="status">Finalizată</span>
+        </li>
+
+        <li class="item-card">
+          <div class="item-main">
+            <div class="item-title-row">
+              <h3>Pet</h3>
+              <span class="favorite not-favorite" aria-label="Piesă nefavorită">☆</span>
+            </div>
+            <div class="item-meta">
+              <span class="badge badge-rock">Rock</span>
+              <span class="format">FLAC</span>
+            </div>
+          </div>
+          <span class="status">Activ</span>
+        </li>
+      </ul>
+
+      <!-- Pregătit pentru Etapa 4:
+      <p class="empty">Nu există nicio piesă.</p>
+      -->
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Arhiva de Muzică · Proiect Tehnologii Web</p>
+  </footer>
+</body>
+</html>
+
+
