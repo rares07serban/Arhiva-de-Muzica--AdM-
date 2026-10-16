@@ -50,10 +50,10 @@ The app now lives in frontend/, built with Vite. The data from stage 2 moved int
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S2-R1 | JS file linked, logs on page load | [index.html#L145](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/index.html#L145) | open page, F12 |
-| S2-R2 | 3+ items with id, name, state, tag | [muzica.js#L1-L36](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/muzica.js#L1-L36) | read |
-| S2-R3 | list, count, search, add, toggle, delete | [muzica.js#L46-L103](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/muzica.js#L46-L103) | console output |
-| S2-R4 | add rejects empty name and invalid tag | [muzica.js#L122-L124](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/muzica.js#L122-L124) | last 2 console lines |
-| S2-R5 | original array unchanged after add | [muzica.js#L113](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/muzica.js#L113) | console line |
-| S2-R6 | README Stage 2 section + AI log | [README.md#stage-2-data-logic](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/README.md#stage-2-data-logic), [ai-log/etapa-02.md](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<3025aff042735101cdc3c166e6e8a998bff6964c>/ai-log/etapa-02.md) | read |
-| S2-R7 | commit "Stage 2" pushed | [Commit link](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/<C3025aff042735101cdc3c166e6e8a998bff6964c>) | commit history |
+| S3-R1 | npm run dev starts without errors | [frontend/package.json](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/package.json) | npm install, npm run dev |
+| S3-R2 | app name and counter computed from data | [frontend/src/App.jsx#L42-L57](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.jsx#L42-L57) | edit data, save |
+| S3-R3 | data from README, not from the example | [frontend/src/App.jsx#L1-L38](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.jsx#L1-L38) | compare with README |
+| S3-R4 | stage 1 styles reused | [frontend/src/App.css](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.css) | look at the page |
+| S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/.gitignore) | npm run build |
+| S3-R6 | README Stage 3 section + AI log | [README.md#stage-3-vite-and-react-project](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/README.md#stage-3-vite-and-react-project), [ai-log/etapa-03.md](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/ai-log/etapa-03.md) | read |
+| S3-R7 | commit "Stage 3" pushed | [Commit link](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/52d1adfdaf86b4ca1a70aded2289b49553f00abd) | commit history |
