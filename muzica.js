@@ -1,4 +1,3 @@
-
 const piese = [
   {
     id: 1,
@@ -40,46 +39,44 @@ const GENURI = [
   "Ambient"
 ];
 
+// Pasul 3: Listarea titlurilor
 function listeazaTitluri(lista) {
-  return lista.map(function (piesa) {
-    return piesa.title;
-  });
+  return lista.map((p) => p.title);
 }
 
+// Pasul 4: Numărarea elementelor active (done: false)
 function numaraActive(lista) {
-  return lista.filter(function (piesa) {
-    return piesa.done === false;
-  }).length;
+  return lista.filter((p) => !p.done).length;
 }
 
+// Pasul 5: Căutarea după titlu (case-insensitive)
 function cautaDupaTitlu(lista, text) {
-  const cautare = text.toLowerCase();
-
-  return lista.filter(function (piesa) {
-    return piesa.title.toLowerCase().includes(cautare);
-  });
+  const cautat = text.toLowerCase();
+  return lista.filter((p) => p.title.toLowerCase().includes(cautat));
 }
 
-function adaugaPiesa(lista, titlu, gen) {
-  const titluValidat = titlu.trim();
+// Pasul 6: Generarea id-ului unic cu reduce
+function nextId(lista) {
+  return lista.reduce((max, p) => Math.max(max, p.id), 0) + 1;
+}
 
-  if (titluValidat === "") {
-    console.log("Eroare: titlul nu poate fi gol.");
+// Pasul 6: Adăugarea cu validare
+function adaugaPiesa(lista, titlu, gen = "Rock") {
+  const titluCurat = titlu.trim();
+
+  if (!titluCurat) {
+    console.log("Titlul nu poate fi gol!");
     return lista;
   }
 
   if (!GENURI.includes(gen)) {
-    console.log("Eroare: genul muzical nu este permis.");
+    console.log("Gen invalid:", gen);
     return lista;
   }
 
-  const idMaxim = lista.reduce(function (maxim, piesa) {
-    return Math.max(maxim, piesa.id);
-  }, 0);
-
   const piesaNoua = {
-    id: idMaxim + 1,
-    title: titluValidat,
+    id: nextId(lista),
+    title: titluCurat,
     done: false,
     isFavorite: false,
     genre: gen,
@@ -91,63 +88,33 @@ function adaugaPiesa(lista, titlu, gen) {
   return [...lista, piesaNoua];
 }
 
-function schimbaStarea(lista, id) {
-  return lista.map(function (piesa) {
-    if (piesa.id === id) {
-      return { ...piesa, done: !piesa.done };
-    }
-
-    return piesa;
-  });
+// Pasul 7: Comutarea stării (done)
+function comutaStare(lista, id) {
+  return lista.map((p) => (p.id === id ? { ...p, done: !p.done } : p));
 }
 
+// Pasul 7: Ștergerea elementului
 function stergePiesa(lista, id) {
-  return lista.filter(function (piesa) {
-    return piesa.id !== id;
-  });
+  return lista.filter((p) => p.id !== id);
 }
 
-console.group("Citire");
+// Pasul 8: Testele din consolă (grupate pe secțiuni)
+console.log("--- Citire ---");
+console.log("Titluri:", listeazaTitluri(piese).join(", "));
+console.log("Active:", numaraActive(piese));
+console.log("Căutare 'eternity':", listeazaTitluri(cautaDupaTitlu(piese, "eternity")).join(", "));
 
-console.log("Date inițiale:", piese);
-console.log("Titluri:", listeazaTitluri(piese));
-console.log("Piese active:", numaraActive(piese));
-console.log("Căutare după titlu:", cautaDupaTitlu(piese, "pet"));
+console.log("--- Adăugare ---");
+let lista = adaugaPiesa(piese, "Night Drive", "Electronic");
+console.log("Lista nouă:", lista.length, "piese");
+console.log("Originalul a ramas cu:", piese.length, "piese");
 
-console.groupEnd();
+console.log("--- Modificare şi ştergere ---");
+lista = comutaStare(lista, 1);
+console.log("După bifarea id 1, active:", numaraActive(lista));
+lista = stergePiesa(lista, 3);
+console.log("După ştergerea id 3:", listeazaTitluri(lista).join(", "));
 
-console.group("Adăugare");
-
-const pieseExtinse = adaugaPiesa(piese, "Night Drive", "Electronic");
-
-console.log("Lista după adăugare:", pieseExtinse);
-console.log("Număr inițial:", piese.length);
-console.log("Număr după adăugare:", pieseExtinse.length);
-console.log("Lista inițială a rămas neschimbată:", piese.length === 3);
-
-console.groupEnd();
-
-console.group("Modificare și ștergere");
-
-const pieseModificate = schimbaStarea(piese, 1);
-
-console.log("Stare inițială:", piese[0].done);
-console.log("Stare modificată:", pieseModificate[0].done);
-
-const pieseSterse = stergePiesa(piese, 2);
-
-console.log("Număr înainte de ștergere:", piese.length);
-console.log("Număr după ștergere:", pieseSterse.length);
-console.log("Lista după ștergere:", pieseSterse);
-
-console.groupEnd();
-
-console.group("Validare");
-
-const rezultatTitluInvalid = adaugaPiesa(piese, "   ", "Rock");
-console.log("Titlu gol respins:", rezultatTitluInvalid === piese);
-
-const rezultatGenInvalid = adaugaPiesa(piese, "Test", "Metal");
-console.log("Gen invalid respins:", rezultatGenInvalid === piese);
-
-console.groupEnd();
+console.log("--- Validare ---");
+adaugaPiesa(lista, "");
+adaugaPiesa(lista, "Piesa Noua", "invalid_genre");
