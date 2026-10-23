@@ -41,19 +41,25 @@ Plain JavaScript, no DOM. `muzica.js` holds the array and the functions that rea
 ## Stage 3: Vite and React project
 The app now lives in frontend/, built with Vite. The data from stage 2 moved into the main component; the list is still printed raw.
 
+## Stage 4: components
+The list is rendered from the data, through two components:
+PiesaList receives the whole array and renders one card per item
+PiesaCard receives a single item through props and displays it
+
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
+- [x] Stage 4: components rendered from data
 
 ## Verification table
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S3-R1 | npm run dev starts without errors | [frontend/package.json](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/package.json) | npm install, npm run dev |
-| S3-R2 | app name and counter computed from data | [frontend/src/App.jsx#L42-L57](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.jsx#L42-L57) | edit data, save |
-| S3-R3 | data from README, not from the example | [frontend/src/App.jsx#L1-L38](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.jsx#L1-L38) | compare with README |
-| S3-R4 | stage 1 styles reused | [frontend/src/App.css](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/src/App.css) | look at the page |
-| S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/frontend/.gitignore) | npm run build |
-| S3-R6 | README Stage 3 section + AI log | [README.md#stage-3-vite-and-react-project](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/README.md#stage-3-vite-and-react-project), [ai-log/etapa-03.md](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/52d1adfdaf86b4ca1a70aded2289b49553f00abd/ai-log/etapa-03.md) | read |
-| S3-R7 | commit "Stage 3" pushed | [Commit link](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/52d1adfdaf86b4ca1a70aded2289b49553f00abd) | commit history |
+| S4-R1 | 2+ components in src/components/ | [frontend/src/components/](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/components/) | open folder |
+| S4-R2 | card receives data through props | [PiesaCard.jsx#L1-L26](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/components/PiesaCard.jsx#L1-L26) | read |
+| S4-R3 | map + key={id}, no console warnings | [PiesaList.jsx#L10-L12](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/components/PiesaList.jsx#L10-L12) | F12, Console |
+| S4-R4 | message for empty list | [PiesaList.jsx#L4-L6](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/components/PiesaList.jsx#L4-L6) | set array to [] |
+| S4-R5 | state changes the card look | [PiesaCard.jsx#L7](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/components/PiesaCard.jsx#L7) | toggle a done flag |
+| S4-R6 | README Stage 4 section + AI log | [README.md#stage-4-components](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/README.md#stage-4-components), [ai-log/etapa-04.md](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/ai-log/etapa-04.md) | read |
+| S4-R7 | commit "Stage 4" pushed | [Commit link](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/<COMMIT_HASH>) | commit history |
