@@ -1,3 +1,5 @@
+import PiesaList from "./components/PiesaList.jsx";
+
 const piese = [
   {
     id: 1,
@@ -51,10 +53,16 @@ export default function App() {
       </header>
 
       <main className="container">
-        <section className="panel">
-          <h2>Piesele mele</h2>
-          {/* Temporar: date brute; componentele apar în Etapa 4 */}
-          <pre>{JSON.stringify(piese, null, 2)}</pre>
+        <section className="panel" aria-labelledby="list-title">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Colecția mea</p>
+              <h2 id="list-title">Piese audio</h2>
+            </div>
+            <span className="list-count">{piese.length} piese</span>
+          </div>
+
+          <PiesaList piese={piese} />
         </section>
       </main>
 
