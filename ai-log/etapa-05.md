@@ -19,4 +19,4 @@
 - Changed or rejected: Kept custom variable naming conventions (`--badge-rock`) matching Stage 1 specifications to prevent blank elements during theme transition.
 
 ## What I learned / what did not work
-I learned the difference between controlled inputs (where the `checked` value is dictated by the React state) and uncontrolled inputs. I also practiced lifting state up into the parent container (`App`) while delegating the UI rendering to purely presentation components.
+I learned the difference between controlled inputs (where the `checked` value is dictated by the React state) and uncontrolled inputs. I also practiced lifting state up into the parent container (`App`) while delegating the UI rendering to purely presentation components.(actualizat)
