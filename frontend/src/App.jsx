@@ -1,6 +1,7 @@
+import { useState } from "react";
 import PiesaList from "./components/PiesaList.jsx";
 
-const piese = [
+const PIESE_INITIALE = [
   {
     id: 1,
     title: "Back From Eternity",
@@ -33,12 +34,42 @@ const piese = [
   }
 ];
 
+function temaInitiala() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export default function App() {
+  const [piese, setPiese] = useState(PIESE_INITIALE);
+  const [tema, setTema] = useState(temaInitiala);
+
+  function handleToggle(id) {
+    setPiese((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, done: !p.done } : p))
+    );
+  }
+
+  function handleDelete(id) {
+    setPiese((prev) => prev.filter((p) => p.id !== id));
+  }
+
+  function handleTema() {
+    const noua = tema === "dark" ? "light" : "dark";
+    setTema(noua);
+    document.documentElement.dataset.theme = noua;
+  }
+
   const active = piese.filter((p) => !p.done).length;
 
   return (
     <>
       <header className="app-header">
+        <button
+          className="theme-toggle"
+          onClick={handleTema}
+          aria-pressed={tema === "dark"}
+        >
+          {tema === "dark" ? "Mod luminos" : "Mod întunecat"}
+        </button>
         <div className="header-content">
           <p className="eyebrow">Proiect Tehnologii Web</p>
           <h1>Arhiva de Muzică</h1>
@@ -62,7 +93,11 @@ export default function App() {
             <span className="list-count">{piese.length} piese</span>
           </div>
 
-          <PiesaList piese={piese} />
+          <PiesaList
+            piese={piese}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
+          />
         </section>
       </main>
 

@@ -1,10 +1,15 @@
-export default function PiesaCard({ piesa }) {
+export default function PiesaCard({ piesa, onToggle, onDelete }) {
   const clasaGen = piesa.genre ? piesa.genre.toLowerCase() : "rock";
 
   return (
     <li className={piesa.done ? "item-card done" : "item-card"}>
       <div className="item-main">
-        <div className="item-title-row">
+        <label className="item-title-row">
+          <input
+            type="checkbox"
+            checked={piesa.done}
+            onChange={() => onToggle(piesa.id)}
+          />
           <h3>{piesa.title}</h3>
           <span
             className={piesa.isFavorite ? "favorite" : "favorite not-favorite"}
@@ -12,7 +17,7 @@ export default function PiesaCard({ piesa }) {
           >
             {piesa.isFavorite ? "★" : "☆"}
           </span>
-        </div>
+        </label>
         <div className="item-meta">
           <span className={`badge badge-${clasaGen}`}>{piesa.genre}</span>
           {piesa.audioFormat && (
@@ -20,7 +25,16 @@ export default function PiesaCard({ piesa }) {
           )}
         </div>
       </div>
-      <span className="status">{piesa.done ? "Finalizată" : "Activ"}</span>
+      <div>
+        <span className="status">{piesa.done ? "Finalizată" : "Activ"}</span>
+        <button
+          className="btn-danger"
+          onClick={() => onDelete(piesa.id)}
+          aria-label={`Șterge ${piesa.title}`}
+        >
+          Șterge
+        </button>
+      </div>
     </li>
   );
 }

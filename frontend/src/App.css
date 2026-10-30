@@ -2,7 +2,54 @@
   box-sizing: border-box;
 }
 
-:root {
+/* 1. Tema luminoasă (Light Mode) explicită */
+:root, :root[data-theme="light"] {
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --card-hover: #f3f4f6;
+  --text: #374151;
+  --text-strong: #111827;
+  --muted: #6b7280;
+  --accent: #d97706;
+  --accent-hover: #b45309;
+  --accent-soft: #fef3c7;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --white: #ffffff;
+
+  /* Culori badge-uri adaptate pentru fundal deschis */
+  --badge-electronic: #0284c7;
+  --badge-ambient: #0d9488;
+  --badge-rock: #be123c;
+  --badge-hiphop: #b45309;
+  --badge-jazz: #6d28d9;
+}
+
+/* 2. Tema sistemului (întunecată), dacă nu e suprascrisă de buton */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #050505;
+    --card: #111111;
+    --card-hover: #181818;
+    --text: #f5e6a8;
+    --text-strong: #fff4bd;
+    --muted: #9a9583;
+    --accent: #f3d35b;
+    --accent-hover: #ffe477;
+    --accent-soft: #292510;
+    --border: #292929;
+    --border-strong: #444444;
+
+    --badge-electronic: #287ea3;
+    --badge-ambient: #277f75;
+    --badge-rock: #a52d48;
+    --badge-hiphop: #a66d20;
+    --badge-jazz: #7453a8;
+  }
+}
+
+/* 3. Tema întunecată forțată din buton */
+:root[data-theme="dark"] {
   --bg: #050505;
   --card: #111111;
   --card-hover: #181818;
@@ -14,9 +61,7 @@
   --accent-soft: #292510;
   --border: #292929;
   --border-strong: #444444;
-  --white: #ffffff;
 
-  /* Culori badge-uri pentru genuri */
   --badge-electronic: #287ea3;
   --badge-ambient: #277f75;
   --badge-rock: #a52d48;
@@ -30,15 +75,18 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Antet */
 .app-header {
-  background: #000000;
+  background: var(--card);
   color: var(--text-strong);
   text-align: center;
   padding: 32px 16px;
   border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: background-color 0.3s;
 }
 
 .app-header h1 {
@@ -57,6 +105,26 @@ body {
   margin-top: 10px;
   color: var(--accent);
   font-weight: 600;
+}
+
+/* Etapa 5: butonul de comutare a temei, în colțul antetului */
+.theme-toggle {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-strong);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--card-hover);
 }
 
 /* Elemente mici de orientare */
@@ -86,6 +154,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 24px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .panel h2 {
@@ -93,58 +162,6 @@ body {
   margin-bottom: 20px;
   color: var(--text-strong);
   font-size: 1.25rem;
-}
-
-/* Formular */
-.item-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.item-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  color: var(--text);
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.item-form input,
-.item-form select {
-  padding: 10px 12px;
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  background: #090909;
-  color: var(--text-strong);
-  font-size: 1rem;
-}
-
-.item-form input::placeholder {
-  color: var(--muted);
-}
-
-.item-form input:hover,
-.item-form select:hover {
-  border-color: var(--accent);
-}
-
-.item-form button {
-  background: var(--accent);
-  color: #080808;
-  border: none;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-.item-form button:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
 }
 
 /* Header lista */
@@ -180,7 +197,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;
-  background: #0b0b0b;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
   transition: border-color 0.2s, background-color 0.2s;
@@ -195,14 +212,23 @@ body {
   min-width: 0;
 }
 
+/* Etapa 5: checkbox în card */
 .item-title-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.item-title-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 .item-title-row h3 {
-  margin: 0 0 6px 0;
+  margin: 0;
   color: var(--text-strong);
   font-size: 1.05rem;
 }
@@ -211,6 +237,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 6px;
 }
 
 /* Favorite */
@@ -233,25 +260,11 @@ body {
   color: var(--white);
 }
 
-.badge-electronic {
-  background: var(--badge-electronic);
-}
-
-.badge-ambient {
-  background: var(--badge-ambient);
-}
-
-.badge-rock {
-  background: var(--badge-rock);
-}
-
-.badge-hiphop {
-  background: var(--badge-hiphop);
-}
-
-.badge-jazz {
-  background: var(--badge-jazz);
-}
+.badge-electronic { background: var(--badge-electronic); }
+.badge-ambient { background: var(--badge-ambient); }
+.badge-rock { background: var(--badge-rock); }
+.badge-hiphop { background: var(--badge-hiphop); }
+.badge-jazz { background: var(--badge-jazz); }
 
 .format {
   color: var(--muted);
@@ -265,8 +278,8 @@ body {
 
 /* Element finalizat (done) - S1-R5 */
 .item-card.done {
-  background: #080808;
-  border-color: #242424;
+  background: var(--card-hover);
+  border-color: var(--border-strong);
 }
 
 .item-card.done h3 {
@@ -292,30 +305,31 @@ body {
   font-size: 0.875rem;
 }
 
+/* Etapa 5: buton de ștergere în card */
+.btn-danger {
+  border: 1px solid var(--badge-rock);
+  background: transparent;
+  color: var(--badge-rock);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: var(--badge-rock);
+  color: #fff;
+}
+
 /* Responsive sub 700px - S1-R6 */
 @media (max-width: 700px) {
   .container {
     grid-template-columns: 1fr;
   }
-
   .section-heading {
     align-items: flex-start;
-  }
-}
-
-/* Tema intunecata - S1-R7 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #050505;
-    --card: #111111;
-    --card-hover: #181818;
-    --text: #f5e6a8;
-    --text-strong: #fff4bd;
-    --muted: #9a9583;
-    --accent: #f3d35b;
-    --accent-hover: #ffe477;
-    --accent-soft: #292510;
-    --border: #292929;
-    --border-strong: #444444;
   }
 }
