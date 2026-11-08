@@ -23,6 +23,10 @@
   --badge-rock: #be123c;
   --badge-hiphop: #b45309;
   --badge-jazz: #6d28d9;
+
+  /* Etapa 6: Variabile pentru eroare */
+  --error-bg: #fdf2f8;
+  --error-border: #fbcfe8;
 }
 
 /* 2. Tema sistemului (întunecată), dacă nu e suprascrisă de buton */
@@ -45,6 +49,10 @@
     --badge-rock: #a52d48;
     --badge-hiphop: #a66d20;
     --badge-jazz: #7453a8;
+
+    /* Etapa 6: Variabile pentru eroare */
+    --error-bg: #3b1d2e;
+    --error-border: #6b2a4a;
   }
 }
 
@@ -67,6 +75,10 @@
   --badge-rock: #a52d48;
   --badge-hiphop: #a66d20;
   --badge-jazz: #7453a8;
+
+  /* Etapa 6: Variabile pentru eroare */
+  --error-bg: #3b1d2e;
+  --error-border: #6b2a4a;
 }
 
 body {
@@ -322,6 +334,19 @@ body {
 .btn-danger:hover {
   background: var(--badge-rock);
   color: #fff;
+}
+
+/* Etapa 6: stări de încărcare și de eroare */
+.info {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--badge-rock);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 10px 12px;
 }
 
 /* Responsive sub 700px - S1-R6 */

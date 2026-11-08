@@ -1,0 +1,54 @@
+{
+  "piese": [
+    {
+      "id": 1,
+      "title": "Back From Eternity",
+      "done": false,
+      "isFavorite": true,
+      "genre": "Electronic",
+      "category": "Uploads",
+      "user": "Creator demo",
+      "audioFormat": "MP3"
+    },
+    {
+      "id": 2,
+      "title": "Eleven",
+      "done": true,
+      "isFavorite": false,
+      "genre": "Ambient",
+      "category": "Playlists",
+      "user": "Creator demo",
+      "audioFormat": "WAV"
+    },
+    {
+      "id": 3,
+      "title": "Pet",
+      "done": false,
+      "isFavorite": false,
+      "genre": "Rock",
+      "category": "Saved Tracks",
+      "user": "Creator demo",
+      "audioFormat": "FLAC"
+    },
+    {
+      "id": 4,
+      "title": "Night Drive",
+      "done": false,
+      "isFavorite": true,
+      "genre": "Hip-Hop",
+      "category": "Uploads",
+      "user": "Creator demo",
+      "audioFormat": "MP3"
+    },
+    {
+      "id": 5,
+      "title": "Jazz Lounge",
+      "done": true,
+      "isFavorite": false,
+      "genre": "Jazz",
+      "category": "Playlists",
+      "user": "Creator demo",
+      "audioFormat": "WAV"
+    }
+  ]
+}

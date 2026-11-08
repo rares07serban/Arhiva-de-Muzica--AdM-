@@ -1,46 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PiesaList from "./components/PiesaList.jsx";
-
-const PIESE_INITIALE = [
-  {
-    id: 1,
-    title: "Back From Eternity",
-    done: false,
-    isFavorite: true,
-    genre: "Electronic",
-    category: "Uploads",
-    user: "Creator demo",
-    audioFormat: "MP3"
-  },
-  {
-    id: 2,
-    title: "Eleven",
-    done: true,
-    isFavorite: false,
-    genre: "Ambient",
-    category: "Playlists",
-    user: "Creator demo",
-    audioFormat: "WAV"
-  },
-  {
-    id: 3,
-    title: "Pet",
-    done: false,
-    isFavorite: false,
-    genre: "Rock",
-    category: "Saved Tracks",
-    user: "Creator demo",
-    audioFormat: "FLAC"
-  }
-];
+import { fetchPiese } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [piese, setPiese] = useState(PIESE_INITIALE);
+  const [piese, setPiese] = useState([]);
   const [tema, setTema] = useState(temaInitiala);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let ignore = false;
+    
+    async function load() {
+      try {
+        const data = await fetchPiese();
+        if (!ignore) setPiese(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    
+    load();
+    
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggle(id) {
     setPiese((prev) =>
@@ -93,11 +84,19 @@ export default function App() {
             <span className="list-count">{piese.length} piese</span>
           </div>
 
-          <PiesaList
-            piese={piese}
-            onToggle={handleToggle}
-            onDelete={handleDelete}
-          />
+          {loading && <p className="info">Se încarcă arhiva...</p>}
+          {error && (
+             <p className="error">
+                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+             </p>
+          )}
+          {!loading && !error && (
+             <PiesaList
+               piese={piese}
+               onToggle={handleToggle}
+               onDelete={handleDelete}
+             />
+          )}
         </section>
       </main>
 
