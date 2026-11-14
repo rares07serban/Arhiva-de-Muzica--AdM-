@@ -52,12 +52,25 @@ and the counters in the header follow automatically. A button in the
 header switches between light and dark mode. Changes are lost on refresh,
 which is what stage 6 and stage 10 fix.
 
+## Stage 6: data from a mock API
+The list is served by json-server from `db.json`. The app fetches it on load and shows a loading state and an error state.
+```bash
+npm run api # terminal 1, http://localhost:3001
+npm run dev # terminal 2, http://localhost:5173
+
+## Stage 7: form and validation
+Tracks can be added from the page. The form is controlled and validated,
+and every change (add, toggle, delete) goes to the API before it shows up
+in the list.
+
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
 - [x] Stage 5: local state and events
+- [x] Stage 6: data from a mock API
+- [x] Stage 7: form and validation
 
 ## Verification table
 
@@ -71,3 +84,4 @@ which is what stage 6 and stage 10 fix.
 | S5-R6 | light/dark toggle: state + data-theme on html | [frontend/src/App.jsx#L54-L58](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/App.jsx#L54-L58), [frontend/src/App.css#L1-L47](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/frontend/src/App.css#L1-L47) | click the button, both system themes |
 | S5-R7 | no console warnings; README + AI log | [README.md#stage-5-local-state-and-events](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/README.md#stage-5-local-state-and-events), [ai-log/etapa-05.md](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/blob/<COMMIT_HASH>/ai-log/etapa-05.md) | F12, Console |
 | S5-R8 | commit "Stage 5" pushed | [fc18e4ac5ffadef0d56cbea134306b88a5fac2ff](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/<COMMIT_HASH>) | commit history |
+| S6 | commit "Stage 6: checklist" pushed | [e76ac1c1289b235c9a06b2c98f14474ba22b1514](https://github.com/rares07serban/Arhiva-de-Muzica--AdM-/commit/<COMMIT_HASH>) | commit history |

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import PiesaList from "./components/PiesaList.jsx";
-import { fetchPiese } from "./api.js";
+import PiesaForm from "./components/PiesaForm.jsx";
+import { createPiesa, deletePiesa, fetchPiese, updatePiesa } from "./api.js";
 
 function temaInitiala() {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 export default function App() {
@@ -14,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     let ignore = false;
-    
+
     async function load() {
       try {
         const data = await fetchPiese();
@@ -25,22 +28,38 @@ export default function App() {
         if (!ignore) setLoading(false);
       }
     }
-    
+
     load();
-    
+
     return () => {
       ignore = true;
     };
   }, []);
 
-  function handleToggle(id) {
-    setPiese((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, done: !p.done } : p))
-    );
+  async function handleAdd(piesaNoua) {
+    const creata = await createPiesa(piesaNoua);
+    setPiese((prev) => [...prev, creata]);
   }
 
-  function handleDelete(id) {
-    setPiese((prev) => prev.filter((p) => p.id !== id));
+  async function handleToggle(id) {
+    const piesa = piese.find((p) => p.id === id);
+    if (!piesa) return;
+
+    try {
+      const actualizata = await updatePiesa(id, { done: !piesa.done });
+      setPiese((prev) => prev.map((p) => (p.id === id ? actualizata : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      await deletePiesa(id);
+      setPiese((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   function handleTema() {
@@ -75,6 +94,11 @@ export default function App() {
       </header>
 
       <main className="container">
+        <section className="panel" aria-labelledby="add-title">
+          <h2 id="add-title">Adaugă o piesă</h2>
+          <PiesaForm onAdd={handleAdd} />
+        </section>
+
         <section className="panel" aria-labelledby="list-title">
           <div className="section-heading">
             <div>
@@ -84,18 +108,22 @@ export default function App() {
             <span className="list-count">{piese.length} piese</span>
           </div>
 
-          {loading && <p className="info">Se încarcă arhiva...</p>}
-          {error && (
-             <p className="error">
-                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
-             </p>
+          {loading && (
+            <p className="info" data-testid="loading">
+              Se încarcă arhiva...
+            </p>
           )}
-          {!loading && !error && (
-             <PiesaList
-               piese={piese}
-               onToggle={handleToggle}
-               onDelete={handleDelete}
-             />
+          {error && (
+            <p className="error" data-testid="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+          {!loading && (
+            <PiesaList
+              piese={piese}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+            />
           )}
         </section>
       </main>

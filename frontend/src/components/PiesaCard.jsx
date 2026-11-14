@@ -2,15 +2,20 @@ export default function PiesaCard({ piesa, onToggle, onDelete }) {
   const clasaGen = piesa.genre ? piesa.genre.toLowerCase() : "rock";
 
   return (
-    <li className={piesa.done ? "item-card done" : "item-card"}>
+    <li
+      className={piesa.done ? "item-card done" : "item-card"}
+      data-testid="item"
+      data-id={piesa.id}
+    >
       <div className="item-main">
         <label className="item-title-row">
           <input
             type="checkbox"
             checked={piesa.done}
             onChange={() => onToggle(piesa.id)}
+            data-testid="item-toggle"
           />
-          <h3>{piesa.title}</h3>
+          <h3 data-testid="item-title">{piesa.title}</h3>
           <span
             className={piesa.isFavorite ? "favorite" : "favorite not-favorite"}
             aria-label={piesa.isFavorite ? "Piesă favorită" : "Piesă nefavorită"}
@@ -31,6 +36,7 @@ export default function PiesaCard({ piesa, onToggle, onDelete }) {
           className="btn-danger"
           onClick={() => onDelete(piesa.id)}
           aria-label={`Șterge ${piesa.title}`}
+          data-testid="item-delete"
         >
           Șterge
         </button>

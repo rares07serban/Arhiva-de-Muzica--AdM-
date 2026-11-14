@@ -155,7 +155,7 @@ body {
   margin: 24px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 24px;
   align-items: start;
 }
@@ -357,4 +357,61 @@ body {
   .section-heading {
     align-items: flex-start;
   }
+}
+
+/* Etapa 7: Formular și stări de validare */
+.item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.item-form input,
+.item-form select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-strong);
+  font-size: 1rem;
+}
+
+.item-form input:hover,
+.item-form select:hover {
+  border-color: var(--accent);
+}
+
+.item-form input[aria-invalid="true"] {
+  border-color: var(--badge-rock);
+}
+
+.item-form button {
+  background: var(--accent);
+  color: #080808;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.item-form button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.item-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

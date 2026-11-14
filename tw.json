@@ -1,0 +1,9 @@
+{
+  "resource": "piese",
+  "title": "title",
+  "done": "done",
+  "sample": {
+    "genre": "Rock",
+    "audioFormat": "MP3"
+  }
+}
