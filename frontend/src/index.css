@@ -1,0 +1,194 @@
+/* Stiluri globale: variabile, elemente de bază, clase comune.
+   Stilurile de componentă stau în fișiere *.module.css */
+
+* {
+  box-sizing: border-box;
+}
+
+/* 1. Tema luminoasă (Light Mode) explicită */
+:root,
+:root[data-theme="light"] {
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --card-hover: #f3f4f6;
+  --text: #374151;
+  --text-strong: #111827;
+  --muted: #6b7280;
+  --accent: #d97706;
+  --accent-hover: #b45309;
+  --accent-soft: #fef3c7;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --white: #ffffff;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --radius: 12px;
+
+  /* Badge-uri genuri muzicale */
+  --badge-electronic: #0284c7;
+  --badge-ambient: #0d9488;
+  --badge-rock: #be123c;
+  --badge-hiphop: #b45309;
+  --badge-jazz: #6d28d9;
+
+  /* Stări eroare */
+  --error-bg: #fdf2f8;
+  --error-border: #fbcfe8;
+}
+
+/* 2. Tema sistemului (întunecată), dacă nu e suprascrisă de buton */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #050505;
+    --card: #111111;
+    --card-hover: #181818;
+    --text: #f5e6a8;
+    --text-strong: #fff4bd;
+    --muted: #9a9583;
+    --accent: #f3d35b;
+    --accent-hover: #ffe477;
+    --accent-soft: #292510;
+    --border: #292929;
+    --border-strong: #444444;
+    --shadow: none;
+
+    --badge-electronic: #287ea3;
+    --badge-ambient: #277f75;
+    --badge-rock: #a52d48;
+    --badge-hiphop: #a66d20;
+    --badge-jazz: #7453a8;
+
+    --error-bg: #3b1d2e;
+    --error-border: #6b2a4a;
+  }
+}
+
+/* 3. Tema întunecată forțată din buton */
+:root[data-theme="dark"] {
+  --bg: #050505;
+  --card: #111111;
+  --card-hover: #181818;
+  --text: #f5e6a8;
+  --text-strong: #fff4bd;
+  --muted: #9a9583;
+  --accent: #f3d35b;
+  --accent-hover: #ffe477;
+  --accent-soft: #292510;
+  --border: #292929;
+  --border-strong: #444444;
+  --shadow: none;
+
+  --badge-electronic: #287ea3;
+  --badge-ambient: #277f75;
+  --badge-rock: #a52d48;
+  --badge-hiphop: #a66d20;
+  --badge-jazz: #7453a8;
+
+  --error-bg: #3b1d2e;
+  --error-border: #6b2a4a;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Panouri */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: var(--text-strong);
+}
+
+/* Mesaje de stare */
+.info {
+  color: var(--muted);
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.error {
+  color: var(--badge-rock);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Butoane comune */
+.btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #080808;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  border: 1px solid var(--badge-rock);
+  background: transparent;
+  color: var(--badge-rock);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: var(--badge-rock);
+  color: #fff;
+}
+
+/* Etichete (Badges) */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--white);
+}
+
+.badge-electronic { background: var(--badge-electronic); }
+.badge-ambient { background: var(--badge-ambient); }
+.badge-rock { background: var(--badge-rock); }
+.badge-hiphop { background: var(--badge-hiphop); }
+.badge-jazz { background: var(--badge-jazz); }

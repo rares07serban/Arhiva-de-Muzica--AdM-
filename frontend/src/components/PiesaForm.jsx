@@ -1,8 +1,6 @@
 import { useState } from "react";
-
-const GENURI = ["Electronic", "Hip-Hop", "Rock", "Jazz", "Ambient"];
-const FORMATE = ["MP3", "WAV", "FLAC"];
-const TITLU_MAX = 100;
+import { FORMATE, GENURI, TITLU_MAX } from "../constants.js";
+import styles from "./PiesaForm.module.css";
 
 export default function PiesaForm({ onAdd }) {
   const [title, setTitle] = useState("");
@@ -59,7 +57,7 @@ export default function PiesaForm({ onAdd }) {
 
   return (
     <form
-      className="item-form"
+      className={styles.form}
       onSubmit={handleSubmit}
       noValidate
       data-testid="form"
@@ -113,7 +111,12 @@ export default function PiesaForm({ onAdd }) {
         </p>
       )}
 
-      <button type="submit" disabled={trimite} data-testid="form-submit">
+      <button
+        type="submit"
+        className="btn"
+        disabled={trimite}
+        data-testid="form-submit"
+      >
         {trimite ? "Se salvează..." : "Adaugă piesa"}
       </button>
     </form>

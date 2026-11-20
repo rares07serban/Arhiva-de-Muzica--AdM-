@@ -1,0 +1,94 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: var(--card-hover);
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.title:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.done {
+  background: var(--card-hover);
+  border-color: var(--border-strong);
+}
+
+.done .title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorite {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.notFavorite {
+  color: var(--muted);
+}
+
+.format {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.done .status {
+  color: var(--accent);
+}
