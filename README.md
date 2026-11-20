@@ -54,9 +54,9 @@ which is what stage 6 and stage 10 fix.
 
 ## Stage 6: data from a mock API
 The list is served by json-server from `db.json`. The app fetches it on load and shows a loading state and an error state.
-```bash
+"```bash
 npm run api # terminal 1, http://localhost:3001
-npm run dev # terminal 2, http://localhost:5173
+npm run dev # terminal 2, http://localhost:5173"
 
 ## Stage 7: form and validation
 Tracks can be added from the page. The form is controlled and validated,
